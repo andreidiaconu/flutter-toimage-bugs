@@ -4,9 +4,30 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(new ToImageBug());
 
-class MyApp extends StatelessWidget {
+class BorderRadiusBug extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+      color: Colors.white,
+      child: new Center(
+        child: new Container(
+          width: 100.0,
+          height: 100.0,
+          decoration: new BoxDecoration(
+              borderRadius: new BorderRadius.circular(15.0),
+              border: new Border.all(color: Colors.black)
+          ),
+          child: new Container(color: Colors.blue),
+        ),
+      ),
+    );
+  }
+}
+
+
+class ToImageBug extends StatelessWidget {
   final GlobalKey repaintBoundary = new GlobalKey();
 
   void _saveToImage() async {
