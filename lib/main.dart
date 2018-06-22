@@ -10,6 +10,7 @@ void main() => runApp(
     new RowMaterialBugB()
 );
 
+/// issue: https://github.com/flutter/flutter/issues/18713
 /// Was not happening on Flutter 0.5.5-pre.25 • channel master
 /// Framework • revision 86ed141bef (7 days ago) • 2018-06-21 22:22:59 -0700
 /// Engine • revision 549c855e89
@@ -31,6 +32,7 @@ class RowMaterialBugA extends StatelessWidget {
   }
 }
 
+/// issue: https://github.com/flutter/flutter/issues/18713
 /// Was not happening on Flutter 0.5.5-pre.25 • channel master
 /// Framework • revision 86ed141bef (7 days ago) • 2018-06-21 22:22:59 -0700
 /// Engine • revision 549c855e89
