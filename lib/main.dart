@@ -4,8 +4,100 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-void main() => runApp(new ToImageBug());
+void main() => runApp(
+//    new ToImageBug()
+//    new BorderRadiusBug()
+    new RowMaterialBugB()
+);
 
+/// Was not happening on Flutter 0.5.5-pre.25 • channel master
+/// Framework • revision 86ed141bef (7 days ago) • 2018-06-21 22:22:59 -0700
+/// Engine • revision 549c855e89
+/// Tools • Dart 2.0.0-dev.61.0.flutter-c95617b19c
+/// But is happening on Flutter v0.5.6-pre.51,
+class RowMaterialBugA extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      textDirection: TextDirection.ltr,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Container(color: Colors.green, width: 100.0, height: 100.0,),
+        Material(borderRadius: BorderRadius.circular(3.0), child: Container(width: 100.0, height:100.0),),
+        Container(color: Colors.red, width: 100.0, height: 100.0,),
+        Container(color: Colors.blue, width: 100.0, height: 100.0,),
+      ],
+    );
+  }
+}
+
+/// Was not happening on Flutter 0.5.5-pre.25 • channel master
+/// Framework • revision 86ed141bef (7 days ago) • 2018-06-21 22:22:59 -0700
+/// Engine • revision 549c855e89
+/// Tools • Dart 2.0.0-dev.61.0.flutter-c95617b19c
+/// But is happening on Flutter v0.5.6-pre.51,
+class RowMaterialBugB extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Row(
+          textDirection: TextDirection.ltr,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Container(color: Colors.green, width: 100.0, height: 100.0,),
+            Container(color: Colors.red, width: 100.0, height: 100.0,),
+            Container(color: Colors.blue, width: 100.0, height: 100.0,),
+          ],
+        ),
+        Row(
+          textDirection: TextDirection.ltr,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Container(color: Colors.green, width: 100.0, height: 100.0,),
+            Container(color: Colors.red, width: 100.0, height: 100.0,),
+            Container(color: Colors.blue, width: 100.0, height: 100.0,),
+          ],
+        ),
+        Row(
+          textDirection: TextDirection.ltr,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Container(color: Colors.green, width: 100.0, height: 100.0,),
+
+            // Causes all following widgets in this Row and in the parent Column to no longer render
+            RaisedButton(onPressed: (){}),
+
+
+            Container(color: Colors.red, width: 100.0, height: 100.0,),
+            Container(color: Colors.blue, width: 100.0, height: 100.0,),
+          ],
+        ),
+        Row(
+          textDirection: TextDirection.ltr,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Container(color: Colors.green, width: 100.0, height: 100.0,),
+            Container(color: Colors.red, width: 100.0, height: 100.0,),
+            Container(color: Colors.blue, width: 100.0, height: 100.0,),
+          ],
+        ),
+        Row(
+          textDirection: TextDirection.ltr,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Container(color: Colors.green, width: 100.0, height: 100.0,),
+            Container(color: Colors.red, width: 100.0, height: 100.0,),
+            Container(color: Colors.blue, width: 100.0, height: 100.0,),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+
+/// https://github.com/flutter/flutter/issues/14421
 class BorderRadiusBug extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -26,7 +118,8 @@ class BorderRadiusBug extends StatelessWidget {
   }
 }
 
-
+/// https://github.com/flutter/flutter/issues/17687 AND
+/// https://github.com/flutter/flutter/issues/17686
 class ToImageBug extends StatelessWidget {
   final GlobalKey repaintBoundary = new GlobalKey();
 
