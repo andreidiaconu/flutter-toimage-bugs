@@ -1,10 +1,8 @@
 # Purpose of this repo
 
-Bug report demo for https://github.com/flutter/flutter/issues/17686 and https://github.com/flutter/flutter/issues/17687
+Bug demonstrations for:
 
-## Issues demoed
-
-1. RenderRepaintBoundary .toImage() fails to account for widget position on screen
-2. Scene .toImage() sometimes fails to render images
-
-![toimage bugs](https://user-images.githubusercontent.com/1402046/40172928-cd305bda-59d8-11e8-8cec-f6179d569aa7.png)
+- Scene.toImage() offset issue: https://github.com/flutter/flutter/issues/17686 (initial reason for this repo)
+- Scene.toImage() fails to render images: https://github.com/flutter/flutter/issues/17687 (initial reason for this repo)
+- Decoration border radius is not working as expected: ashttps://github.com/flutter/flutter/issues/14421
+- Row fails to render items after a RaisedButton: https://github.com/flutter/flutter/issues/18713
